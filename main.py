@@ -29,6 +29,10 @@ pygame.display.set_caption("Dino Run")
 # set the background color
 background_color = (255, 255, 255)
 
+# background objects initialisation
+floor = pygame.image.load("sprites/others/floor.png")
+cloud = pygame.image.load("sprites/others/cloud.png")
+
 # player initialisation
 player = Player(100, 100)
 player_group = pygame.sprite.Group()
@@ -45,8 +49,9 @@ while running:
       if event.type == pygame.QUIT:
           running = False
   
-  # clear
+  # backgroundm objects
   screen.fill(background_color)    
+  screen.blit(floor, (0, 500))
   
   # update player sprite
   player.update()
