@@ -28,6 +28,8 @@ class Ground(pygame.sprite.Sprite):
     # initial position
     self.rect.x = x
     self.rect.y = y
+    # initial speed
+    self.speed = 2
    
 
 # initialise
