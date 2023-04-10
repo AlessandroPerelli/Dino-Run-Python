@@ -19,6 +19,17 @@ class Player(pygame.sprite.Sprite):
     if key[pygame.K_DOWN]:
       self.rect.y += self.speed
 
+class Ground(pygame.sprite.Sprite):
+  def __init__(self, x, y):
+    super().__init__()
+    # load ground sprite
+    self.image = pygame.image.load("sprites/others/floor.png")
+    self.rect = self.image.get_rect()
+    # initial position
+    self.rect.x = x
+    self.rect.y = y
+   
+
 # initialise
 pygame.init()
 screen_width = 800
@@ -30,8 +41,9 @@ pygame.display.set_caption("Dino Run")
 background_color = (255, 255, 255)
 
 # background objects initialisation
-floor = pygame.image.load("sprites/others/floor.png")
-cloud = pygame.image.load("sprites/others/cloud.png")
+ground = Ground(0, 500)
+ground_group = pygame.sprite.Group()
+ground_group.add(ground)
 
 # player initialisation
 player = Player(100, 100)
@@ -49,10 +61,12 @@ while running:
       if event.type == pygame.QUIT:
           running = False
   
-  # backgroundm objects
+  # background objects
   screen.fill(background_color)    
-  screen.blit(floor, (0, 500))
   
+  # draw ground
+  ground_group.draw(screen)
+
   # update player sprite
   player.update()
   player_group.draw(screen)
