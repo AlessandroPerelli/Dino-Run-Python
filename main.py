@@ -3,14 +3,21 @@ import pygame
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        self.sprite_sheet = pygame.image.load("sprites/dinosaur_player.png")
-        
+        # load player sprite
+        self.image = pygame.image.load("sprites/player/dinosaur/run1.png")
         self.rect = self.image.get_rect()
+        # initial position
         self.rect.x = x
         self.rect.y = y
+        # initial speed
+        self.speed = 5
 
     def update(self):
-        pass
+      key = pygame.key.get_pressed()
+      if key[pygame.K_UP]:
+        self.rect.y -= self.speed
+      if key[pygame.K_DOWN]:
+        self.rect.y += self.speed
 
 # initialise
 pygame.init()
@@ -18,8 +25,6 @@ screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Dino Run")
-
-player_sprite = pygame.image.load("assets/dino.png")
 
 # set the background color
 background_color = (255, 255, 255)
